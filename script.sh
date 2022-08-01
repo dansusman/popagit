@@ -20,3 +20,9 @@ else
     gh repo create $NAME --private --source=. --remote=upstream
 fi
 
+USERNAME=$(git config user.email)
+
+git remote add origin https://github.com/$USERNAME/$NAME.git
+
+git push --set-upstream origin main
+
