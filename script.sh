@@ -7,10 +7,11 @@ read NAME
 read -p "Do you wish to have your code private? (y/n)" yn
 public=true
 
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+if [[ "$yn" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     public=false
 fi
+
 
 if [ "$public" = true ]; then
     echo Creating a public repository for you!
@@ -20,9 +21,10 @@ else
     gh repo create $NAME --private --source=. --remote=upstream
 fi
 
-USERNAME=$(git config user.email)
+USERNAME=$(git config user.name)
 
 git remote add origin https://github.com/$USERNAME/$NAME.git
 
-git push --set-upstream origin main
+# git push --set-upstream origin main
+
 
